@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { getRecipeByName } from "../api.js";
 
-export default function Research(){
+export default function Research({onSearchResult}){
     const [text, setText] = useState("");
 
     const handleClick = async () => {
@@ -10,8 +10,9 @@ export default function Research(){
         }
         try{
             const result = await getRecipeByName(text.trim());
-            console.log(result);
-            return result;
+            //return result;
+            //on remonte le resultat dans App.jsx
+            onSearchResult(result);
         }catch(error){
             console.log(error);
         }
