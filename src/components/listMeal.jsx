@@ -8,7 +8,7 @@ export default function ListMeal({resultApi}){
     return (
         <article className="mealsResult">
             {resultApi.map((oneReceipe) => (
-                <CardMeal key={oneReceipe.idMeal} name={oneReceipe.name} image={oneReceipe.image} ingredients={oneReceipe.ingredients} instructions={oneReceipe.instructions}></CardMeal>
+                <CardMeal key={oneReceipe.id} name={oneReceipe.name} image={oneReceipe.image} ingredients={oneReceipe.ingredients} instructions={oneReceipe.instructions}></CardMeal>
             ))}
         </article>
     );
