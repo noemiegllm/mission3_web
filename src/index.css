@@ -131,3 +131,8 @@ code {
   max-width: 800px;
   margin: auto;
 }
+
+#loadingGIF{
+  margin: auto;
+  align-items: center;
+}

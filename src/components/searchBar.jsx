@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { getRecipeByName } from "../api.js";
 
-export default function Research({onSearchResult}){
+export default function Research({onSearchResult, setLoading}){
     const [text, setText] = useState("");
 
     const handleClick = async () => {
         if (!text.trim()){
             return;
         }
+        setLoading(true);
         try{
             const result = await getRecipeByName(text.trim());
             //return result;
@@ -15,6 +16,8 @@ export default function Research({onSearchResult}){
             onSearchResult(result);
         }catch(error){
             console.log(error);
+        }finally{
+            setLoading(false);
         }
     }
 
