@@ -10,7 +10,7 @@ function App() {
   return (
     <>
     <h1>M3 - React Core</h1>
-    <Research onSearchResult={(data) => setResult(data)} setLoading={setLoading} setErrorMessage={setErrorMessage}></Research>
+    <Research onSearchResult={(data) => setResult(data)} setLoading={setLoading} loading={loading} setErrorMessage={setErrorMessage}></Research>
     {errorMessage && (
       <p>{errorMessage}</p>
     )}

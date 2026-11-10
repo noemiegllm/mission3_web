@@ -1,11 +1,14 @@
 import { useState } from "react";
 import { getRecipeByName } from "../api.js";
 
-export default function Research({onSearchResult, setLoading, setErrorMessage}){
+export default function Research({onSearchResult, setLoading, loading, setErrorMessage}){
     const [text, setText] = useState("");
 
-    const handleClick = async () => {
+    const handleClick = async (e) => {
+        e.preventDefault();
+        onSearchResult([]);
         if (!text.trim()){
+            setErrorMessage("Please, enter a term in the search bar");
             return;
         }
         setErrorMessage("");
@@ -23,10 +26,10 @@ export default function Research({onSearchResult, setLoading, setErrorMessage}){
     }
 
     return (
-        <div className="search-box">
+        <form className="search-box" onSubmit={handleClick}>
             <SearchBar text={text} onChange={setText}/>
-            <SubmitSearch onClick={handleClick}/>
-        </div>
+            <SubmitSearch loading={loading}/>
+        </form>
     );
 }
 
@@ -37,8 +40,8 @@ function SearchBar({text, onChange}){
     );
 };
 
-function SubmitSearch({onClick}){
+function SubmitSearch({onClick, loading}){
     return (
-        <button id="searchBtn" onClick={onClick}>Search</button>
+        <button id="searchBtn" onClick={onClick} disabled={loading}>Search</button>
     );
 }
